@@ -50,6 +50,10 @@ defineProps({
                                     <li>Audio File Support</li>
                                     <li>Extendable Functionality</li>
                                 </ul>
+                                <p class="mt-3">
+                                    Why not 
+                                    <Link :href="route('Roadmap')">view the Roadmap</Link>
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -109,12 +113,14 @@ defineProps({
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                 There are several simple things you can do if you want to get involved in this project.
+                            </div>
+                            <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
 
                                 <ol>
                                     <li><strong>Sponsor</strong><br />
                                         As a disabled person, who has to spend 20+ hours a day laid on a bed, I can honestly say that my family & I live below the bread line. I was a professional software engineer beforeI got so ill that I had to give up work. My Wife has to give up a 20+ year career as a teacher to help look after me and our son with special needs.
                                     </li>
-                                    <li><strong>Join the project</strong><br />
+                                    <li class="mt-3"><strong>Join the project</strong><br />
                                         If you want, please feel free to join in the coding experience. Any expertise is welcome, and I'll create a more in-depth giude as to how I see the project progressing, when I have time.
                                     </li>
                                 </ol>
