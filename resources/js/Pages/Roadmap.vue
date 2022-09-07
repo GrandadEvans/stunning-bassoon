@@ -41,6 +41,18 @@ defineProps({
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                 <ol class="list-decimal">
+                                    <li>Initial Directory work
+                                        <ul class="ml-6 list-disc">
+                                            <li>When a user registers they get a home directory
+                                                <ul class="ml-6 list-disc">
+                                                    <li>Create a skeleton directory</li>
+                                                    <li>Each entity has a db entry that allows things likename,alias,permissions etc</li>
+                                                </ul>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                    <li>Access Folder structure</li>
+                                    <li>Display folder structure in UI</li>
                                     <li>Create initial project policies
                                         <ol class="ml-6 list-decimal">
                                             <li>Privacy policy</li>
@@ -50,6 +62,7 @@ defineProps({
                                             <li>Testing guide</li>
                                         </ol>
                                     </li>
+                                    <li>Create GitHub workflows</li>
                                     <li>Create different envoronments
                                         <ul class="ml-6 list-disc">
                                             <li>Development</li>
@@ -57,9 +70,6 @@ defineProps({
                                             <li>Production</li>
                                         </ul>
                                     </li>
-                                    <li>Create GitHub workflows</li>
-                                    <li>Access Folder structure</li>
-                                    <li>Display folder structure in UI</li>
                                     <li>Manually upload a file</li>
                                     <li>Create a plugin system
                                         <ul class="ml-6 list-disc">
