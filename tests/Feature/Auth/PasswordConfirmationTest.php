@@ -2,7 +2,7 @@
 
 namespace Tests\Feature\Auth;
 
-use StunningBassoon\Models\User;
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
 
