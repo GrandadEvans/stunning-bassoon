@@ -3,6 +3,7 @@
 namespace App\Casts;
 
 use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Uid\Uuid as SymfonyUuid;
 
 class Uuid implements CastsAttributes
@@ -18,7 +19,10 @@ class Uuid implements CastsAttributes
      */
     public function get($model, string $key, $value, array $attributes)
     {
-        return SymfonyUuid::fromRfc4122($value);
+        $converted = SymfonyUuid::fromRfc4122($value);
+        Log::debug('Cast UUID "${value}" from string');
+
+        return $converted;
     }
 
     /**
@@ -32,7 +36,10 @@ class Uuid implements CastsAttributes
      */
     public function set($model, string $key, $value, array $attributes)
     {
-        return SymfonyUuid::toRfc4122($value);
+        $converted = SymfonyUuid::toRfc4122($value);
+        Log::debug('Converted UUID to string "${value}"');
+
+        return $converted;
     }
 
     /**
@@ -46,6 +53,9 @@ class Uuid implements CastsAttributes
      */
     public function serialize($model, string $key, $value, array $attributes)
     {
-        return SymfonyUuid::toRfc4122($value);
+        $converted = SymfonyUuid::toRfc4122($value);
+        Log::debug('Converted UUID to string "${value}" ready for serialization');
+
+        return $converted;
     }
 }

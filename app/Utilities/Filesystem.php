@@ -4,6 +4,7 @@ namespace App\Utilities;
 
 use App\Exceptions\FilesystemException;
 use App\Models\User;
+use Illuminate\Support\Facades\Log;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 class Filesystem
@@ -18,7 +19,10 @@ class Filesystem
      */
     public static function md5Dir(String $dir) : String
     {
-        return self::md5DirRecursively($dir);
+        $hash = self::md5DirRecursively($dir);
+        Log::debug("md5 hash for '${dir}' is '${hash}'");
+
+        return $hash;
     }
 
 
@@ -26,22 +30,32 @@ class Filesystem
      * Create the new user's filesystem from a skeleton version
      *
      * @param $user User
+     * @throws \App\Exceptions\FilesystemException
      *
      * @return void
      */
     public static function createNewUserFilesystem(User $user) : void
     {
-        $fs = new SymfonyFilesystem();
+        Log::debug('Creating user ('.$user->id.') filesystem');
+
         $skeletonDir = config('filesystem.fs_userspace_src');
         $baseDir = config('filesystem.fs_userspace_dst');
         $userDir = $baseDir . '/' . $user->uuid;
 
+        Log::debug('Skeleton filesystem set to '.$skeletonDir);
+        Log::debug('User\'s filesystem set to '.$userDir);
+
         try {
+            $fs = new SymfonyFilesystem();
             $fs->mirror($skeletonDir, $userDir);
         }
         catch(\Exception $e) {
+            Log::error('Failed to create filesystem for user ('.$event->user->id.')');
+
             throw new FilesystemException('Unable to create your default user space', $e);
         }
+
+        Log::info('Created user filesystem for user ('.$user->id.')');
     }
 
     /**

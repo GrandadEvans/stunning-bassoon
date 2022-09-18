@@ -7,6 +7,7 @@ use App\Events\UserCreated;
 use App\Utilities\Filesystem;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Support\Facades\Log;
 
 class CreateUserFilesystem
 {
@@ -29,11 +30,7 @@ class CreateUserFilesystem
      */
     public function handle(UserCreated $event): void
     {
-        try {
-            Filesystem::createNewUserFilesystem($event->user);
-        }
-        catch (\Exception $e) {
-            throw new FilesystemException('Could not create the user-space', $e);
-        }
+        Log::info('Event "UserCreated" triggered for user ('.$event->user->id.')');
+        Filesystem::createNewUserFilesystem($event->user);
     }
 }

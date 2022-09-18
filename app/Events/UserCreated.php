@@ -10,6 +10,7 @@ use Illuminate\Broadcasting\PrivateChannel;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 
 class UserCreated
 {
@@ -31,6 +32,7 @@ class UserCreated
      */
     public function __construct(User $user)
     {
+        Log::info('User ('.$user->id.') created');
         $this->user = $user;
     }
 
