@@ -11,12 +11,6 @@ class Filesystem
 {
 
     /**
-     * Set the base directory for the user's filesystem to go into
-     */
-    public static $defaultUserFilesystems = 'UserFilesystems/';
-
-
-    /**
      * Get the md5 hash for a directory
      *
      * @param $dir String   The directory to create the user filesystem in
@@ -39,8 +33,8 @@ class Filesystem
     public static function createNewUserFilesystem(User $user) : void
     {
         $fs = new SymfonyFilesystem();
-        $skeletonDir = 'tests/Resources/RecursiveTestSrc';
-        $baseDir = self::$defaultUserFilesystems;
+        $skeletonDir = config('filesystem.fs_userspace_src');
+        $baseDir = config('filesystem.fs_userspace_dst');
         $userDir = $baseDir . '/' . $user->uuid;
 
         try {
@@ -81,6 +75,7 @@ class Filesystem
              }
         }
         $d->close();
+        
         return md5(implode('', $filemd5s));
     }
 }

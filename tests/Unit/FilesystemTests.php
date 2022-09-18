@@ -49,7 +49,7 @@ class FilesystemTests extends TestCase
         // Create a new UUID (normally it will coime from user)
         $uuid = Uuid::uuid4()->toString();
         //  Set the new destination dir
-        $newDst = "${dst}/${uuid}";
+        $newDst = $dst . '/' . $uuid;
         // Ensure it doesn't already exist
         $this->assertFalse($filesystem->exists($newDst));
 
