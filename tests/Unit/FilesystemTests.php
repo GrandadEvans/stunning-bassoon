@@ -3,7 +3,7 @@
 namespace Tests\Unit;
 
 use PHPUnit\Framework\TestCase;
-use Ramsey\Uuid\Uuid;
+use Symfony\Component\Uid\UuidV4;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 use App\Utilities\Filesystem;
 
@@ -47,7 +47,7 @@ class FilesystemTests extends TestCase
         $this->assertTrue($filesystem->exists($dst));
 
         // Create a new UUID (normally it will coime from user)
-        $uuid = Uuid::uuid4()->toString();
+        $uuid = Uuid::v4();
         //  Set the new destination dir
         $newDst = $dst . '/' . $uuid;
         // Ensure it doesn't already exist

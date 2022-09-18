@@ -3,11 +3,12 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Casts\Uuid;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
-use Ramsey\Uuid\Uuid;
+use Symfony\Component\Uid\UuidV4;
 
 
 class User extends Authenticatable
@@ -43,18 +44,6 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'uuid' => Uuid::class
     ];
-
-    /**
-     * Interact with the user's UUID.
-     *
-     * @return \Illuminate\Database\Eloquent\Casts\Attribute
-     */
-    protected function uuid(): Attribute
-    {
-        return Attribute::make(
-            get: fn ($value) => $value,
-            set: fn ($value) => (empty($value)) ? Uuid::uuid4()->toString() : $value
-        );
-    }
 }

@@ -4,7 +4,6 @@ namespace App\Utilities;
 
 use App\Exceptions\FilesystemException;
 use App\Models\User;
-use Ramsey\Uuid\Uuid;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
 class Filesystem

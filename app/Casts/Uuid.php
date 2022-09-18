@@ -1,0 +1,51 @@
+<?php
+
+namespace App\Casts;
+
+use Illuminate\Contracts\Database\Eloquent\CastsAttributes;
+use Symfony\Component\Uid\Uuid as SymfonyUuid;
+
+class Uuid implements CastsAttributes
+{
+    /**
+     * Cast the given value to a UUID
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
+     * @return mixed
+     */
+    public function get($model, string $key, $value, array $attributes)
+    {
+        return SymfonyUuid::fromRfc4122($value);
+    }
+
+    /**
+     * Convert the UUID to a string ready for storage.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
+     * @return mixed
+     */
+    public function set($model, string $key, $value, array $attributes)
+    {
+        return SymfonyUuid::toRfc4122($value);
+    }
+
+    /**
+     * Convert the UUID back to a string ready for serialization.
+     *
+     * @param  \Illuminate\Database\Eloquent\Model  $model
+     * @param  string  $key
+     * @param  mixed  $value
+     * @param  array  $attributes
+     * @return mixed
+     */
+    public function serialize($model, string $key, $value, array $attributes)
+    {
+        return SymfonyUuid::toRfc4122($value);
+    }
+}
