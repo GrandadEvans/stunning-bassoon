@@ -2,6 +2,8 @@
 
 namespace App\Utilities;
 
+use App\Exceptions\FilesystemException;
+use App\Models\User;
 use Ramsey\Uuid\Uuid;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
 
@@ -30,26 +32,22 @@ class Filesystem
     /**
      * Create the new user's filesystem from a skeleton version
      *
-     * @param $userUUID String? If supplied (normally from the user object) it gived the user's uinque id
+     * @param $user User
      *
      * @return void
      */
-    public static function createNewUserFilesystem(String $userUUID = null) : void
+    public static function createNewUserFilesystem(User $user) : void
     {
-        if (is_null($userUUID)) {
-            $userUUID = Uuid::uuid4()->toString();
-        }
-
         $fs = new SymfonyFilesystem();
         $skeletonDir = 'tests/Resources/RecursiveTestSrc';
         $baseDir = self::$defaultUserFilesystems;
-        $userDir = "${baseDir}/${userUUID}";
+        $userDir = $baseDir . '/' . $user->uuid;
 
         try {
             $fs->mirror($skeletonDir, $userDir);
         }
         catch(\Exception $e) {
-            throw new FilesystemEzxeption('Unable to create your default user space');
+            throw new FilesystemException('Unable to create your default user space', $e);
         }
     }
 
