@@ -20,7 +20,7 @@ class Uuid implements CastsAttributes
     public function get($model, string $key, $value, array $attributes)
     {
         $converted = SymfonyUuid::fromRfc4122($value);
-        Log::debug('Cast UUID "${value}" from string');
+        Log::debug("Cast UUID '${value}' from string");
 
         return $converted;
     }
@@ -36,8 +36,8 @@ class Uuid implements CastsAttributes
      */
     public function set($model, string $key, $value, array $attributes)
     {
-        $converted = SymfonyUuid::toRfc4122($value);
-        Log::debug('Converted UUID to string "${value}"');
+        $converted = (string) $value;
+        Log::debug("Converted UUID to string '${converted}'");
 
         return $converted;
     }
@@ -53,8 +53,8 @@ class Uuid implements CastsAttributes
      */
     public function serialize($model, string $key, $value, array $attributes)
     {
-        $converted = SymfonyUuid::toRfc4122($value);
-        Log::debug('Converted UUID to string "${value}" ready for serialization');
+        $converted = (string) $value;
+        Log::debug("Converted UUID to string '${converted}' ready for serialization");
 
         return $converted;
     }

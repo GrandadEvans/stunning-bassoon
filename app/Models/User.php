@@ -24,7 +24,6 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'uuid'
     ];
 
     /**
@@ -44,6 +43,17 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'uuid' => Uuid::class
     ];
+
+    /**
+     * Return the filesystem entries relationship
+     * 
+     * @todo Get the correct return type
+     * 
+     * @return
+     */
+    public function filesystemEntries()
+    {
+        return $this->hasMany(FilesystemEntry::class);
+    }
 }

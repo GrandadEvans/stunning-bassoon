@@ -79,10 +79,8 @@ class UserObserver
      * 
      * @param \App\Models\User  $user
      * @param String            $event
-     * 
-     * @return never
      */
-    private function userEvent(User $user, String $event): never
+    private function userEvent(User $user, String $event)
     {
         $id = $user->id;
         Log::debug("User (${id}) has been " . strtoupper($event));

@@ -3,6 +3,7 @@
 namespace App\Utilities;
 
 use App\Exceptions\FilesystemException;
+use App\Models\FilesystemEntry;
 use App\Models\User;
 use Illuminate\Support\Facades\Log;
 use Symfony\Component\Filesystem\Filesystem as SymfonyFilesystem;
@@ -57,6 +58,29 @@ class Filesystem
 
         Log::info('Created user filesystem for user ('.$user->id.')');
     }
+
+    // private static function listAllFiles($dir) {
+    //     $array = array_diff(scandir($dir), array('.', '..'));
+       
+    //     foreach ($array as &$item) {
+    //       $item = $dir . $item;
+    //     }
+    //     unset($item);
+    //     foreach ($array as $item) {
+    //       if (is_dir($item)) {
+    //        $array = array_merge($array, listAllFiles($item . DIRECTORY_SEPARATOR));
+    //       }
+    //     }
+    //     return $array;
+    // }
+
+    // private static function addFilesToDb() {
+    //     $ls = self::listAllFiles($userDir);
+
+    //     foreach($ls as $entry) {
+    //         new FilesystemEntry($entry);
+    //     }
+    // }
 
     /**
      * Get the MD5 hash of an entire directory

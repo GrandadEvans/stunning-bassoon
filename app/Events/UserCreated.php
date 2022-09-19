@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-use App\User;
+use App\Models\User;
 use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Broadcasting\PresenceChannel;
@@ -32,7 +32,6 @@ class UserCreated
      */
     public function __construct(User $user)
     {
-        Log::info('User ('.$user->id.') created');
         $this->user = $user;
     }
 
